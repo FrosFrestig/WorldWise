@@ -5,7 +5,7 @@ import styles from "./CityItem.module.css";
 import useCities from "../contexts/CitiesContext";
 
 function CityItem({ city }) {
-  const { emoji, cityName, date, id, position } = city;
+  const { emoji, cityName, date, id, lat, lng } = city;
   const { currentCity, deleteCity } = useCities();
 
   function handleDelete(e) {
@@ -19,7 +19,7 @@ function CityItem({ city }) {
         className={`${styles.cityItem} ${
           city.id === currentCity.id ? styles["cityItem--active"] : ""
         }`}
-        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+        to={`${id}?lat=${lat}&lng=${lng}`}
       >
         <span className={styles.emoji}>
           <FlagemojiToPng emoji={emoji} />

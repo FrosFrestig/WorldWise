@@ -1,12 +1,5 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  useReducer,
-} from "react";
-
-const BASE_URL = "http://localhost:9000";
+import { createContext, useEffect, useContext, useReducer } from "react";
+import supabase from "../config/supabase";
 
 const CitiesContext = createContext();
 
@@ -82,14 +75,19 @@ function CitiesProvider({ children }) {
     async function fetchCities() {
       try {
         dispatch({ type: "isLoading" });
-        const res = await fetch(`${BASE_URL}/cities`);
-        const data = await res.json();
+        // const res = await fetch(`${BASE_URL}/cities`);
+        // const data = await res.json();
 
-        dispatch({ type: "cities/loaded", payload: data });
+        let { data: cities, error } = await supabase.from("cities").select("*");
+
+        if (error)
+          throw new Error("Ther waas an error while loading the cities");
+
+        dispatch({ type: "cities/loaded", payload: cities });
       } catch (err) {
         dispatch({
           type: "error",
-          payload: "There was an error while loading the cities",
+          payload: err.message,
         });
       }
     }
@@ -101,14 +99,20 @@ function CitiesProvider({ children }) {
     if (currentCity.id === +id) return;
     try {
       dispatch({ type: "isLoading" });
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
 
-      dispatch({ type: "city/loaded", payload: data });
+      let { data: city, error } = await supabase
+        .from("cities")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+      if (error) throw new Error("There was an error while loading the city");
+
+      dispatch({ type: "city/loaded", payload: city });
     } catch (err) {
       dispatch({
         type: "error",
-        payload: "There was an error while loading the city",
+        payload: err.message,
       });
     }
   }
@@ -116,21 +120,22 @@ function CitiesProvider({ children }) {
   async function createCity(newCity) {
     try {
       dispatch({ type: "isLoading" });
-      const res = await fetch(`${BASE_URL}/cities`, {
-        method: "POST",
-        body: JSON.stringify(newCity),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
 
-      const data = await res.json();
+      const { data, error } = await supabase
+        .from("cities")
+        .insert([newCity])
+        .select()
+        .single();
+
+      console.log(data);
+
+      if (error) throw new Error("There was an error while adding the city");
 
       dispatch({ type: "city/created", payload: data });
     } catch (err) {
       dispatch({
         type: "error",
-        payload: "There was an error while adding the city",
+        payload: err.message,
       });
     }
   }
@@ -138,15 +143,15 @@ function CitiesProvider({ children }) {
   async function deleteCity(id) {
     try {
       dispatch({ type: "isLoading" });
-      await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE",
-      });
+
+      const { error } = await supabase.from("cities").delete().eq("id", id);
+      if (error) throw new Error("Ther was an error while deleting the city");
 
       dispatch({ type: "city/deleted", payload: id });
     } catch (err) {
       dispatch({
         type: "error",
-        payload: "Ther was an error while deleting the city",
+        payload: err.message,
       });
     }
   }

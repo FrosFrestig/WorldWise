@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   MapContainer,
@@ -20,6 +20,7 @@ function Map() {
   const { cities } = useCities();
   const [mapPosition, setMapPosition] = useState([0, 0]);
   const [mapLat, mapLng] = useUrlPosition();
+
   const {
     isLoading: isLoadingGeolocation,
     position: geolocationPosition,
@@ -54,10 +55,7 @@ function Map() {
         />
 
         {cities.map((city) => (
-          <Marker
-            position={[city.position.lat, city.position.lng]}
-            key={city.id}
-          >
+          <Marker position={[city.lat, city.lng]} key={city.id}>
             <Popup>
               <FlagemojiToPng emoji={city.emoji} /> {city.cityName}
             </Popup>
