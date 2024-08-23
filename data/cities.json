@@ -10,55 +10,55 @@
         "lat": 38.727881642324164,
         "lng": -9.140900099907554
       },
-      "id": 73930385
+      "id": "73930385"
     },
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
+      "id": "6bd6",
+      "cityName": "Moitaco",
+      "country": "Venezuela (Bolivarian Republic of)",
+      "emoji": "🇻🇪",
       "notes": "",
+      "date": "2024-08-21T05:25:59.738Z",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": 17806751
+        "lat": "7.431827543034452",
+        "lng": "-64.59960937500001"
+      }
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": 98443197
-    },
-    {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
+      "id": "344b",
+      "cityName": "Mooreland",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
       "notes": "",
+      "date": "2024-08-21T05:26:05.343Z",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": 17806753
+        "lat": "36.71986993574974",
+        "lng": "-99.140625"
+      }
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "id": "44cb",
+      "cityName": "Region 3, Unorganized",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "notes": "",
+      "date": "2024-08-21T05:26:08.139Z",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": 98443196
+        "lat": "63.22907462788161",
+        "lng": "-115.83984375000001"
+      }
+    },
+    {
+      "id": "9a6c",
+      "cityName": "Tanay",
+      "country": "Philippines (the)",
+      "emoji": "🇵🇭",
+      "notes": "",
+      "date": "2024-08-21T05:26:16.249Z",
+      "position": {
+        "lat": "14.726375611245643",
+        "lng": "121.33300781250001"
+      }
     }
   ]
 }
